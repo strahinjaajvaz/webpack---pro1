@@ -7,11 +7,29 @@ const path = require("path");
 
 // output file has to be in the public directory
 
+/*
+  webpack 2 - loaders are refered to as modules and the rules are the syntax
+  rules - the loaders you want to have on your project
+    - 
+*/
+
 const config = {
   entry: "./src/app.js",
   output: {
     path: path.resolve(__dirname, "public"),
     filename: "bundle.js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: "babel-loader"
+      },
+      {
+        use: ["style-loader", "css-loader"],
+        test: /\.css$/
+      }
+    ]
   }
 };
 
